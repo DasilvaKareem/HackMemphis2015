@@ -20,7 +20,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/player2Button"
+        android:id="@+id/player2ButtonB"
         android:onClick="player2Answer"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -28,10 +28,74 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/player1Button"
+        android:id="@+id/player1ButtonB"
         android:onClick="player1Answer"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/player1Question"
+        android:layout_above="@+id/player2ButtonB"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="91dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/timer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/player2Question"
+        android:layout_above="@+id/timer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/player1ButtonC"
+        android:layout_alignRight="@+id/playerButtonA"
+        android:layout_alignEnd="@+id/playerButtonA" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/player2ButtonC"
+        android:layout_alignRight="@+id/player1Question"
+        android:layout_alignEnd="@+id/player1Question"
+        android:layout_below="@+id/player1Question" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/player2ButtonA"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/player1Question" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/player1ButtonC"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/player1ButtonA"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/player1Question"
+        android:layout_alignEnd="@+id/player1Question" />
 
 
 </RelativeLayout>
