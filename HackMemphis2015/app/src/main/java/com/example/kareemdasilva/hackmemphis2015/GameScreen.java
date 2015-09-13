@@ -3,6 +3,7 @@ package com.example.kareemdasilva.hackmemphis2015;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,21 +16,45 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class GameScreen extends ActionBarActivity {
-    public Question createQuestion(){
-        Question question = new Question("What is Naruto Signature Move","Rasengan","SHadow clone Jutsu","Chidori","RasenShiruken");
+public class GameScreen extends AppCompatActivity {
+    public Question currentQuestion;
+    public Question createQuestion(String questionAnswer, String questionQuestion, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3){
+        currentQuestion = new Question(questionAnswer,questionQuestion,wrongAnswer1,wrongAnswer2,wrongAnswer3);
         player1ButtonA = (Button) findViewById(R.id.player1ButtonA);
         player2ButtonA = (Button) findViewById(R.id.player2ButtonA);
-        player1ButtonB = (Button) findViewById(R.id.player1Button);
-        player1ButtonC = (Button) findViewById(R.id.player1Button);
+        player1ButtonB = (Button) findViewById(R.id.player1ButtonB);
+        player1ButtonC = (Button) findViewById(R.id.player1ButtonC);
         player2ButtonB = (Button) findViewById(R.id.player2ButtonB);
-        player2ButtonC = (Button) findViewById(R.id.player1Button);
+        player2ButtonC = (Button) findViewById(R.id.player2ButtonC);
+
+        player1ButtonA.setText(currentQuestion.wrongAnswers.get(0));
+        player1ButtonB.setText(currentQuestion.wrongAnswers.get(1));
+        player1ButtonC.setText(currentQuestion.wrongAnswers.get(2));
+
+
+        player2ButtonA.setText(currentQuestion.wrongAnswers.get(0));
+        player2ButtonB.setText(currentQuestion.wrongAnswers.get(1));
+        player2ButtonC.setText(currentQuestion.wrongAnswers.get(2));
+        player1ButtonA.setRotation(180);
+        player1ButtonB.setRotation(180);
+        player1ButtonC.setRotation(180);
+
+
+
+
+        //Set text to buttons
+
         player1ButtonA.setBackgroundColor(Color.GREEN);
         player2ButtonA.setBackgroundColor(Color.BLUE);
 
         player1Question = (TextView) findViewById(R.id.player1Question);
         player2Question = (TextView) findViewById(R.id.player2Question);
-        return
+
+        player1Question.setText(currentQuestion.question);
+        player2Question.setText(currentQuestion.question);
+
+        player2Question.setRotation(180);
+        return currentQuestion;
 
     }
     public  class Question {
@@ -96,8 +121,8 @@ public class GameScreen extends ActionBarActivity {
         setContentView(R.layout.activity_game_screen);
 
 
+        createQuestion("poop","what do people do to a barthoom","pee","poop","dfef");
 
-        player2Question.setRotation(180);
         counter = (TextView) findViewById(R.id.timer); // Text for GameTimer
         gameTimer = new Timer();
         player1 = new Player(8000,0);
@@ -109,15 +134,15 @@ public class GameScreen extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        if (gameCounter == 0 ) {
+                        if (gameCounter == 0) {
                             gameTimer.cancel();
+                            player1.lostLifePoints(1000);
+                            player2.lostLifePoints(1000);
 
 
                         }
                         counter.setText(String.valueOf(gameCounter)); // you can set it to a textView to show it to the user to see the time passing while he is writing.
                         gameCounter--;
-
-
 
 
                         //checks if game counter hits zero
@@ -128,21 +153,77 @@ public class GameScreen extends ActionBarActivity {
             }
         }, 1000, 1000);
     }
-    public  void player1Answer(View view){
+    public  void player1AnswerB(View view){
         gameTimer.cancel();
-        player2.lostLifePoints(1000);
+        if (currentQuestion.checkAnswer(player1ButtonB.getText().toString()) == true) {
+            player2.lostLifePoints(1000);
+            nextQuestion();
+        }
+            if (player2.lifePoints == 0) {
+            Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_SHORT);
+            end.show();
+        }
+    }
+    public  void player1AnswerA(View view){
+        gameTimer.cancel();
+        if (currentQuestion.checkAnswer(player1ButtonA.getText().toString()) == true) {
+            player2.lostLifePoints(1000);
+            nextQuestion();
+        }
+        if (player2.lifePoints == 0) {
+            Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_LONG);
+
+            end.show();
+        }
+    }
+    public  void player1AnswerC(View view){
+        gameTimer.cancel();
+        if (currentQuestion.checkAnswer(player1ButtonC.getText().toString()) == true) {
+            player2.lostLifePoints(1000);
+            nextQuestion();
+        }
         if (player2.lifePoints == 0) {
             Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_SHORT);
             end.show();
         }
     }
-    public void player2Answer(View view){
-        player1.lostLifePoints(1000);
+    public void player2AnswerB(View view){
+
         gameTimer.cancel();
         if (player1.lifePoints == 0) {
             Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
             end.show();
 
+        }
+        if (currentQuestion.checkAnswer(player1ButtonB.getText().toString()) == true) {
+            player1.lostLifePoints(1000);
+            nextQuestion();
+        }
+    }
+    public void player2AnswerA(View view){
+
+        gameTimer.cancel();
+        if (player1.lifePoints == 0) {
+            Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
+            end.show();
+
+        }
+        if (currentQuestion.checkAnswer(player1ButtonA.getText().toString())) {
+            player1.lostLifePoints(1000);
+            nextQuestion();
+        }
+    }
+    public void player2AnswerC(View view){
+
+        gameTimer.cancel();
+        if (player1.lifePoints == 0) {
+            Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
+            end.show();
+
+        }
+        if (currentQuestion.checkAnswer(player1ButtonC.getText().toString())){
+            player1.lostLifePoints(1000);
+            nextQuestion();
         }
     }
 
@@ -167,7 +248,13 @@ public class GameScreen extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
+    public int questionNumber
+    public void nextQuestion(){
+        String[] wrongAnswerSet1 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
+        String[] wrongAnswerSet2 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
+        String[] wrongAnswerSet3 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
+        questionNumber++
+        createQuestion("fefe","feffff","effff","fefef","fefe");
+    }
 
 }
