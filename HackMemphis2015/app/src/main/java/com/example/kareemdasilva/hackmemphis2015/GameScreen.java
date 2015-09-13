@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,6 +92,7 @@ public class GameScreen extends AppCompatActivity {
         public void lostLifePoints(int currentPoints){
            lifePoints -= currentPoints;
 
+
         }
         public void correct(){
             answers++;
@@ -115,6 +117,9 @@ public class GameScreen extends AppCompatActivity {
     private Button player1ButtonC;
     private Button player2ButtonC;
 
+    private  TextView player1LifePoints;
+    private  TextView player2LifePoints;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,12 +127,18 @@ public class GameScreen extends AppCompatActivity {
         setContentView(R.layout.activity_game_screen);
 
 
-        createQuestion("poop","what do people do to a barthoom","pee","poop","dfef");
+        createQuestion("poop", "what do people do to a barthoom", "pee", "poop", "dfef");
 
         counter = (TextView) findViewById(R.id.timer); // Text for GameTimer
         gameTimer = new Timer();
         player1 = new Player(8000,0);
         player2 = new Player(8000,0);
+        player1LifePoints = (TextView) findViewById(R.id.player1LP);
+        player1LifePoints.setText(player1.lifePoints+"");
+        player2LifePoints = (TextView) findViewById(R.id.player2LP);
+        player2LifePoints.setText(player2.lifePoints+"");
+        player1LifePoints.setTextColor(Color.GREEN);
+        player2LifePoints.setTextColor(Color.BLUE);
         gameTimer.scheduleAtFixedRate(new TimerTask() {
 
             @Override
@@ -143,6 +154,7 @@ public class GameScreen extends AppCompatActivity {
 
                         }
                         counter.setText(String.valueOf(gameCounter)); // you can set it to a textView to show it to the user to see the time passing while he is writing.
+                        //counter.setAnimation(AnimationUtils.loadAnimation(GameScreen.this, android.R.anim.bounce_interpolator));
                         gameCounter--;
 
 
@@ -158,6 +170,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonB.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            player2LifePoints.setText(player2.lifePoints + "");
             if (player2.lifePoints == 0) {
                 gameOver();
             }
@@ -169,6 +182,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonA.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            player2LifePoints.setText(player2.lifePoints + "");
             if (player2.lifePoints == 0) {
                 gameOver();
             }
@@ -181,6 +195,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonC.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            player2LifePoints.setText(player2.lifePoints + "");
             if (player2.lifePoints == 0) {
                 gameOver();
             }
@@ -194,6 +209,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonB.getText().toString())) {
             player1.lostLifePoints(1000);
+            player1LifePoints.setText(player1.lifePoints + "");
             if (player1.lifePoints == 0) {
                 gameOver();
 
@@ -207,6 +223,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonA.getText().toString())) {
             player1.lostLifePoints(1000);
+            player1LifePoints.setText(player1.lifePoints + "");
             if (player1.lifePoints == 0) {
                 gameOver();
 
@@ -220,6 +237,7 @@ public class GameScreen extends AppCompatActivity {
 
         if (currentQuestion.checkAnswer(player1ButtonC.getText().toString())){
             player1.lostLifePoints(1000);
+            player1LifePoints.setText(player1.lifePoints + "");
             if (player1.lifePoints == 0) {
                 gameOver();
 
@@ -252,16 +270,17 @@ public class GameScreen extends AppCompatActivity {
     public int questionNumber = 0;
     public void nextQuestion(){
         if (player1.lifePoints == 0 || player2.lifePoints == 0) {
-
+            Intent intent =  new Intent(this,Game_Over.class); //creats bridge to view
+            startActivity(intent);
         } else {
             String[] questionSet = {"What is the biggest planet!","What is the capital of New York",
                     "Who created the Apple 1","Who was the first Super Saiyan",
                     "Who is the reincarnted form of the Ashura",
-                    "What does Ram  stand for","What is Seiya's Constellaion","What is Jotaro's Stand is called"};
-            String[] answerSet= {"Jupiter","Albany","Steve Wozinak","Goku","Naruto","Random Access Memory","Pegaseaus","Star Platinum"};
-            String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto","Deez Nutz","The World"};
-            String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi", "Random offline Memory","Scorpio","Hermit Purple"};
-            String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke","Random Access Memory","Pegaseaus","Star Platinum"};
+                    "What does Ram  stand for","What is Seiya's Constellaion","What is Jotaro's Stand is called","What is the name of Luffy's devil fruit","What is Sailor Moon Real Name","Naruto's Strongest Move","Sora's Nobody name is"};
+            String[] answerSet= {"Jupiter","Albany","Steve Wozinak","Goku","Naruto","Random Access Memory","Pegaseaus","Star Platinum","Gumu Gumu No Mi","Usagi","RasenShiruken","Roxas"};
+            String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto","Deez Nutz","The World","Mera Mera No Mi","Akame","RasenShiruken","Mickey"};
+            String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi", "Random offline Memory","Scorpio","Hermit Purple","Gumu Gumu No Mi","Sakura","Rasengan","Riku"};
+            String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke","Random Access Memory","Pegaseaus","Star Platinum","Yami Yami No Mi","Usagi","Chidori","Ventas"};
             gameCounter = 10;
             createQuestion(answerSet[questionNumber],questionSet[questionNumber],wrongAnswerSet1[questionNumber],wrongAnswerSet2[questionNumber],wrongAnswerSet3[questionNumber]);
             questionNumber++;
@@ -275,4 +294,5 @@ public class GameScreen extends AppCompatActivity {
         Intent intent =  new Intent(this,Game_Over.class); //creats bridge to view
         startActivity(intent);
     }
+
 }

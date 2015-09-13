@@ -30,8 +30,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/player1ButtonB"
         android:onClick="player1AnswerB"
+        android:height="150dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/player2Question" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,13 +43,12 @@
         android:textSize="30pt"
         android:textAlignment="center"
         android:id="@+id/player1Question"
-        android:layout_above="@+id/player2ButtonB"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="91dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/timer" />
+        android:layout_below="@+id/timer"
+        android:layout_above="@+id/player2ButtonC" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,8 +62,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/player1ButtonC"
-        android:layout_alignRight="@+id/playerButtonA"
-        android:layout_alignEnd="@+id/playerButtonA" />
+
+        android:layout_alignRight="@+id/player1ButtonA"
+        android:layout_alignEnd="@+id/player1ButtonA" />
 
     <Button
         android:layout_width="wrap_content"
@@ -71,12 +73,15 @@
         android:id="@+id/player2ButtonC"
         android:onClick="player2AnswerC"
         android:background="#f0f000"
+        android:height="100dp"
+        android:width="100dp"
+        android:layout_alignBottom="@+id/player2ButtonB"
         android:layout_alignRight="@+id/player1Question"
-        android:layout_alignEnd="@+id/player1Question"
-        android:layout_below="@+id/player1Question" />
+        android:layout_alignEnd="@+id/player1Question" />
 
     <Button
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/player2ButtonA"
@@ -85,14 +90,16 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/player1Question" />
+
+        android:layout_alignTop="@+id/player2ButtonC" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
         android:id="@+id/player1ButtonC"
-        android:onClick="player1ButtonC"
+        android:onClick="player1AnswerC"
+        android:height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -101,12 +108,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button"
+        android:height="150dp"
         android:id="@+id/player1ButtonA"
         android:background="#f00f"
         android:onClick="player1AnswerA"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/player1Question"
         android:layout_alignEnd="@+id/player1Question" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Player One LP"
+        android:id="@+id/player1LP"
+        android:textSize="20pt"
+        android:layout_above="@+id/player1Question"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Player 2LP"
+        android:id="@+id/player2LP"
+        android:textSize="20pt"
+        android:layout_alignTop="@+id/timer"
+        android:layout_alignLeft="@+id/player1ButtonA"
+        android:layout_alignStart="@+id/player1ButtonA" />
 
 
 </RelativeLayout>
