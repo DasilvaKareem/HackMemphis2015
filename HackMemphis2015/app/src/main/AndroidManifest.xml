@@ -20,6 +20,10 @@
             android:name=".GameScreen"
             android:label="@string/title_activity_game_screen" >
         </activity>
+        <activity
+            android:name=".Game_Over"
+            android:label="@string/title_activity_game__over" >
+        </activity>
     </application>
 
 </manifest>

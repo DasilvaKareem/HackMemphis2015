@@ -1,5 +1,6 @@
 package com.example.kareemdasilva.hackmemphis2015;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -135,9 +136,9 @@ public class GameScreen extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     public void run() {
                         if (gameCounter == 0) {
-                            gameTimer.cancel();
                             player1.lostLifePoints(1000);
                             player2.lostLifePoints(1000);
+                            nextQuestion();
 
 
                         }
@@ -154,75 +155,75 @@ public class GameScreen extends AppCompatActivity {
         }, 1000, 1000);
     }
     public  void player1AnswerB(View view){
-        gameTimer.cancel();
+
         if (currentQuestion.checkAnswer(player1ButtonB.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            if (player2.lifePoints == 0) {
+                gameOver();
+            }
             nextQuestion();
         }
-            if (player2.lifePoints == 0) {
-            Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_SHORT);
-            end.show();
-        }
+
     }
     public  void player1AnswerA(View view){
-        gameTimer.cancel();
+
         if (currentQuestion.checkAnswer(player1ButtonA.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            if (player2.lifePoints == 0) {
+                gameOver();
+            }
             nextQuestion();
         }
-        if (player2.lifePoints == 0) {
-            Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_LONG);
 
-            end.show();
-        }
     }
     public  void player1AnswerC(View view){
-        gameTimer.cancel();
+
+
         if (currentQuestion.checkAnswer(player1ButtonC.getText().toString()) == true) {
             player2.lostLifePoints(1000);
+            if (player2.lifePoints == 0) {
+                gameOver();
+            }
             nextQuestion();
         }
-        if (player2.lifePoints == 0) {
-            Toast end = Toast.makeText(this,"Player 2 lost the game",Toast.LENGTH_SHORT);
-            end.show();
-        }
+
     }
     public void player2AnswerB(View view){
 
-        gameTimer.cancel();
-        if (player1.lifePoints == 0) {
-            Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
-            end.show();
 
-        }
-        if (currentQuestion.checkAnswer(player1ButtonB.getText().toString()) == true) {
+
+        if (currentQuestion.checkAnswer(player1ButtonB.getText().toString())) {
             player1.lostLifePoints(1000);
+            if (player1.lifePoints == 0) {
+                gameOver();
+
+            }
             nextQuestion();
         }
     }
     public void player2AnswerA(View view){
 
-        gameTimer.cancel();
-        if (player1.lifePoints == 0) {
-            Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
-            end.show();
 
-        }
+
         if (currentQuestion.checkAnswer(player1ButtonA.getText().toString())) {
             player1.lostLifePoints(1000);
+            if (player1.lifePoints == 0) {
+                gameOver();
+
+            }
             nextQuestion();
         }
     }
     public void player2AnswerC(View view){
 
-        gameTimer.cancel();
-        if (player1.lifePoints == 0) {
-            Toast end = Toast.makeText(this, "Player 1 lost the game", Toast.LENGTH_SHORT);
-            end.show();
 
-        }
+
         if (currentQuestion.checkAnswer(player1ButtonC.getText().toString())){
             player1.lostLifePoints(1000);
+            if (player1.lifePoints == 0) {
+                gameOver();
+
+            }
             nextQuestion();
         }
     }
@@ -250,16 +251,28 @@ public class GameScreen extends AppCompatActivity {
     }
     public int questionNumber = 0;
     public void nextQuestion(){
-        String[] questionSet = {"What is the biggest planet!","What is the capital of New York","Who created the Apple 1","Who was the first Super Saiyan","Who is the reincarnted form of the Ashura"};
-        String[] answerSet= {"Sun","Albany","Steve Wozinak","Goku","Naruto"};
-        String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto"};
-        String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi"};
-        String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke"};
+        if (player1.lifePoints == 0 || player2.lifePoints == 0) {
 
-        createQuestion(answerSet[questionNumber],questionSet[questionNumber],wrongAnswerSet1[questionNumber],wrongAnswerSet2[questionNumber],wrongAnswerSet3[questionNumber]);
-        questionNumber++;
+        } else {
+            String[] questionSet = {"What is the biggest planet!","What is the capital of New York",
+                    "Who created the Apple 1","Who was the first Super Saiyan",
+                    "Who is the reincarnted form of the Ashura",
+                    "What does Ram  stand for","What is Seiya's Constellaion","What is Jotaro's Stand is called"};
+            String[] answerSet= {"Jupiter","Albany","Steve Wozinak","Goku","Naruto","Random Access Memory","Pegaseaus","Star Platinum"};
+            String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto","Deez Nutz","The World"};
+            String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi", "Random offline Memory","Scorpio","Hermit Purple"};
+            String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke","Random Access Memory","Pegaseaus","Star Platinum"};
+            gameCounter = 10;
+            createQuestion(answerSet[questionNumber],questionSet[questionNumber],wrongAnswerSet1[questionNumber],wrongAnswerSet2[questionNumber],wrongAnswerSet3[questionNumber]);
+            questionNumber++;
+        }
+
 
 
     }
 
+    public void gameOver(){
+        Intent intent =  new Intent(this,Game_Over.class); //creats bridge to view
+        startActivity(intent);
+    }
 }
