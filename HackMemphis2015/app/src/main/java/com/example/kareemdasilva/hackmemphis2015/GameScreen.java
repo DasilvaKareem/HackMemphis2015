@@ -248,13 +248,18 @@ public class GameScreen extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public int questionNumber
+    public int questionNumber = 0;
     public void nextQuestion(){
-        String[] wrongAnswerSet1 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
-        String[] wrongAnswerSet2 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
-        String[] wrongAnswerSet3 = {"Sun","Alaska","Steve Jobs","Goku","Naruto"};
-        questionNumber++
-        createQuestion("fefe","feffff","effff","fefef","fefe");
+        String[] questionSet = {"What is the biggest planet","What is the capital of New York","Who created the Apple 1","Who was the first Super Saiyan","Who is the reincarnted form of the Ashura"};
+        String[] answerSet= {"Sun","Albany","Steve Wozinak","Goku","Naruto"};
+        String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto"};
+        String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi"};
+        String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke"};
+
+        createQuestion(answerSet[questionNumber],questionSet[questionNumber],wrongAnswerSet1[questionNumber],wrongAnswerSet2[questionNumber],wrongAnswerSet3[questionNumber]);
+        questionNumber++;
+
+
     }
 
 }
