@@ -12,6 +12,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/title"
         android:id="@+id/textView"
+        android:textSize="40pt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="87dp" />
@@ -24,5 +25,9 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:onClick="start"
+        android:width="400dp"
+        android:height="400dp"
+        android:background="#ff0000"
+        android:textColor="#fff"
         android:layout_marginTop="47dp" />
 </RelativeLayout>
