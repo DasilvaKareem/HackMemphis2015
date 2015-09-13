@@ -250,7 +250,7 @@ public class GameScreen extends AppCompatActivity {
     }
     public int questionNumber = 0;
     public void nextQuestion(){
-        String[] questionSet = {"What is the biggest planet","What is the capital of New York","Who created the Apple 1","Who was the first Super Saiyan","Who is the reincarnted form of the Ashura"};
+        String[] questionSet = {"What is the biggest planet!","What is the capital of New York","Who created the Apple 1","Who was the first Super Saiyan","Who is the reincarnted form of the Ashura"};
         String[] answerSet= {"Sun","Albany","Steve Wozinak","Goku","Naruto"};
         String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto"};
         String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi"};
