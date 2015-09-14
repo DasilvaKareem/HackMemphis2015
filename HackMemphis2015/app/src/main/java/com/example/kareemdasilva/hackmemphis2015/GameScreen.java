@@ -149,6 +149,8 @@ public class GameScreen extends AppCompatActivity {
                         if (gameCounter == 0) {
                             player1.lostLifePoints(1000);
                             player2.lostLifePoints(1000);
+                            player1LifePoints.setText(player1.lifePoints + "");
+                            player2LifePoints.setText(player2.lifePoints + "");
                             nextQuestion();
 
 
