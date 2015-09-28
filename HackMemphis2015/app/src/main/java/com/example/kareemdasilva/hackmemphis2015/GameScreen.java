@@ -279,11 +279,11 @@ public class GameScreen extends AppCompatActivity {
                     "Who created the Apple 1","Who was the first Super Saiyan",
                     "Who is the reincarnted form of the Ashura",
                     "What does Ram  stand for","What is Seiya's Constellaion","What is Jotaro's Stand is called","What is the name of Luffy's devil fruit",
-                    "What is Sailor Moon Real Name","Naruto's Strongest Move","Sora's Nobody name is","Who is Stronger Goku or Superman","Naruto's rival is"};
-            String[] answerSet= {"Jupiter","Albany","Steve Wozinak","Goku","Naruto","Random Access Memory","Pegaseaus","Star Platinum","Gumu Gumu No Mi","Usagi","RasenShiruken","Roxas","Omg not this question","Sasuke"};
-            String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto","Deez Nutz","The World","Mera Mera No Mi","Akame","RasenShiruken","Mickey","Goku","Sasuke"};
-            String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi", "Random offline Memory","Scorpio","Hermit Purple","Gumu Gumu No Mi","Sakura","Rasengan","Riku","Omg not this question","Rock Lee"};
-            String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke","Random Access Memory","Pegaseaus","Star Platinum","Yami Yami No Mi","Usagi","Chidori","Ventas","Superman","Madara"};
+                    "What is Sailor Moon Real Name","Naruto's Strongest Move","Sora's Nobody name is","Who is Stronger Goku or Superman","Naruto's rival is","Agumon's mega level digimon is"};
+            String[] answerSet= {"Jupiter","Albany","Steve Wozinak","Goku","Naruto","Random Access Memory","Pegaseaus","Star Platinum","Gumu Gumu No Mi","Usagi","RasenShiruken","Roxas","Omg not this question","Sasuke","Wargreymon"};
+            String[] wrongAnswerSet1 = {"Sun","Albany","Steve Jobs","Broly","Naruto","Deez Nutz","The World","Mera Mera No Mi","Akame","RasenShiruken","Mickey","Goku","Sasuke","Galletmon"};
+            String[] wrongAnswerSet2 = {"Jupiter","New York City","Steve Wozinak","Goku","Itachi", "Random offline Memory","Scorpio","Hermit Purple","Gumu Gumu No Mi","Sakura","Rasengan","Riku","Omg not this question","Rock Lee","Imperdiralmon"};
+            String[] wrongAnswerSet3 = {"Earth","Manhattan","Steve joestar","Bardock","Sasuke","Random Access Memory","Pegaseaus","Star Platinum","Yami Yami No Mi","Usagi","Chidori","Ventas","Superman","Madara","Wargreymon"};
             gameCounter = 5;
             createQuestion(answerSet[questionNumber],questionSet[questionNumber],wrongAnswerSet1[questionNumber],wrongAnswerSet2[questionNumber],wrongAnswerSet3[questionNumber]);
             questionNumber++;
